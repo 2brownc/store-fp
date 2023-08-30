@@ -1,9 +1,10 @@
 "use client";
 
+import * as React from 'react';
 import Image from 'next/image'
-
-import { ReactNode, useEffect, useState } from 'react';
-import { isCallChain } from 'typescript';
+import { useEffect, useState } from 'react';
+import { ICategory, IProduct } from '@/types/types';
+import Filters from '@/components/filters';
 
 export default function Home() {
   // set the vibe
@@ -19,29 +20,11 @@ export default function Home() {
   const vibeAPI = "https://api.furrl.in/api/v1/vibe/getVibeRelate";
   const vibeAPIBody = { vibe }
 
-  // types
-  interface ICategory {
-    id: string,
-    name: string
-  }
-
-  interface IProduct {
-    id: string,
-    productId: number,
-    compare_at_price: number,
-    price: number,
-    title: string,
-    image: string,
-    brandName: string,
-    furrlDiscountPercent: number,
-    furrlProductCategoryId: string
-  }
-
   // state
   const [products, setProducts] = useState<any>([]);
 
   const [productCategories, setProductCategories] = useState<ICategory[] | null>();
-  const [selectedProductsCategories, setSelectProductCategories] = useState<ICategory[] | null>(null);
+  const [selectedProductsCategory, setSelectProductCategory] = useState<ICategory | null>(null);
 
   const [page, setPage] = useState<number>(1);
 
@@ -209,14 +192,11 @@ export default function Home() {
         </div>
         <div className="">
           {/* FILTERS */}
-          <div className="flex gap-3 px-3 overflow-x-auto scrollbar-hide">
-            {
-              productCategories && productCategories.map(category => <div className="
-                border-solid border-2 rounded-3xl
-                p-2
-              " key={category.id}>{`${category.name}`}</div>)
-            }
-          </div>
+          <Filters
+            productCategories
+            selectedProductCategories
+            setSelectedProductCategories
+          />
 
           {/* PRODUCTS */}
           <div className=""></div>
