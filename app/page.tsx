@@ -1,10 +1,11 @@
 "use client";
 
-import * as React from 'react';
-import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ICategory, IProduct } from '@/types/types';
+
 import Filters from '@/components/filters';
+import TopMenu from '@/components/topMenu';
+import VibeImage from '@/components/vibeImage';
 
 export default function Home() {
   // set the vibe
@@ -20,16 +21,21 @@ export default function Home() {
   const vibeAPI = "https://api.furrl.in/api/v1/vibe/getVibeRelate";
   const vibeAPIBody = { vibe }
 
+  const allProductCategory: ICategory = {
+    name: "All",
+    id: "0"
+  };
+
   // state
   const [products, setProducts] = useState<any>([]);
 
-  const [productCategories, setProductCategories] = useState<ICategory[] | null>();
-  const [selectedProductsCategory, setSelectProductCategory] = useState<ICategory | null>(null);
+  const [productCategories, setProductCategories] = useState<ICategory[] | null>(null);
+  const [selectedProductsCategory, setSelectedProductsCategory] = useState<ICategory>(allProductCategory);
 
   const [page, setPage] = useState<number>(1);
 
   const [visitId, setVisitId] = useState<any | null>(null);
-  const [vibeImageUrl, setVibeImageUrl] = useState<any | null>(null);
+  const [vibeImageUrl, setVibeImageUrl] = useState<string | null>(null);
   const [totalProducts, setTotalProducts] = useState<number | null>(null);
 
   const getVisitId = async () => {
@@ -72,10 +78,6 @@ export default function Home() {
         let currentProducts: IProduct[] | [] = [];
 
 
-        const allProductCategory: ICategory = {
-          name: "All",
-          id: "0"
-        };
         let currentCategories: ICategory[] = [allProductCategory];
 
         // populate category list
@@ -140,47 +142,12 @@ export default function Home() {
       min-h-screen
     ">
       {/* MENU BAR */}
-      <div className="
-        flex items-center w-full
-        z-10 p-4
-      ">
-        <div className="grow text-center">
-
-          #Vibe Page
-        </div>
-        <div className="grow-0 w-8 text-center">
-          B
-        </div>
-        <div className="grow-0 w-8 text-center">
-          C
-        </div>
-      </div>
-
+      <TopMenu />
       {/* HERO */}
-      <div className="w-full">
-        <div className="w-full">
-          {vibeImageUrl && <Image
-            src={vibeImageUrl}
-            alt="Vibe Image"
-            width="0"
-            height="0"
-            sizes="100vw"
-            style={{ width: '100%', height: '50%' }}
-          />}
-        </div>
-      </div>
-      <div className="
-        w-full p-3
-      ">
-        <div className="
-          inset-3 bg-gray-100 rounded-lg h-10
-          flex justify-around items-center
-        ">
-          <div className="bg-white w-fit h-fit rounded-md p-1">
-            Products
-          </div>
-        </div>
-      </div>
+      {
+        vibeImageUrl &&
+        <VibeImage vibeImageUrl={vibeImageUrl} />
+      }
 
       {/*PRODUCTS GALLERY*/}
       <div className="">
@@ -193,9 +160,9 @@ export default function Home() {
         <div className="">
           {/* FILTERS */}
           <Filters
-            productCategories
-            selectedProductCategories
-            setSelectedProductCategories
+            productCategories={productCategories}
+            selectedProductsCategory={selectedProductsCategory}
+            setSelectedProductsCategory={setSelectedProductsCategory}
           />
 
           {/* PRODUCTS */}
