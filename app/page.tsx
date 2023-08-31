@@ -6,6 +6,7 @@ import { ICategory, IProduct } from '@/types/types';
 import Filters from '@/components/filters';
 import TopMenu from '@/components/topMenu';
 import VibeImage from '@/components/vibeImage';
+import ProductGallery from '@/components/productGallery';
 
 export default function Home() {
   // set the vibe
@@ -36,7 +37,8 @@ export default function Home() {
 
   const [visitId, setVisitId] = useState<any | null>(null);
   const [vibeImageUrl, setVibeImageUrl] = useState<string | null>(null);
-  const [totalProducts, setTotalProducts] = useState<number | null>(null);
+  const [totalProducts, setTotalProducts] = useState<number>(0);
+  const [currentTotalProducts, setCurrentTotalProducts] = useState<number>(0);
 
   const getVisitId = async () => {
     const response = await fetch(
@@ -94,36 +96,30 @@ export default function Home() {
 
         // populate product list
         productData.map((item: any) => {
-          let categoryId: string | null = null;
+          let categoryIds: string[] = ['0'];
 
-          if (productCategories !== null) {
-            item.map(({ furrlProductCategoryList }: any) => {
-              furrlProductCategoryList.map(({ furrlProductCategoryId }: any) => {
-                if (productCategories.includes(furrlProductCategoryId)) {
-                  categoryId = furrlProductCategoryId;
-                }
-              })
-            })
-          }
+          item.furrlProductCategoryList.map(({ furrlProductCategoryId }: any) => {
+            categoryIds = [...categoryIds, furrlProductCategoryId]
+          })
 
-          if (categoryId !== null) {
-            const product: IProduct = {
-              id: item.id,
-              productId: item.productid,
-              compare_at_price: item.compare_at_price,
-              price: item.price,
-              title: item.title,
-              image: item[0].src,
-              brandName: item.brandName,
-              furrlDiscountPercent: item.furrlDiscountPercent,
-              furrlProductCategoryId: categoryId,
-            };
+          const product: IProduct = {
+            id: item.id,
+            productId: item.productid,
+            compare_at_price: item.compare_at_price,
+            price: item.price,
+            title: item.title,
+            image: item.images[0].src,
+            brandName: item.brandName,
+            furrlDiscountPercent: item.furrlDiscountPercent,
+            furrlProductCategoryIds: categoryIds,
+          };
 
-            currentProducts = [...currentProducts, product];
-          }
+
+          currentProducts = [...currentProducts, product];
 
         });
         setProducts((previous: any) => [...previous, ...currentProducts]);
+        setCurrentTotalProducts(products.length)
       }
     }
   };
@@ -166,7 +162,15 @@ export default function Home() {
           />
 
           {/* PRODUCTS */}
-          <div className=""></div>
+          <div className="flex flex-wrap">
+            <ProductGallery
+              products={products}
+              selectedProductsCategory={selectedProductsCategory}
+              currentTotalProducts={currentTotalProducts}
+              page={page}
+              setPage={setPage}
+            />
+          </div>
 
         </div>
       </div>
