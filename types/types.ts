@@ -12,7 +12,7 @@ interface IProduct {
   image: string,
   brandName: string,
   furrlDiscountPercent: number,
-  furrlProductCategoryId: string
+  furrlProductCategoryIds: string[]
 }
 
 export type { ICategory, IProduct };
