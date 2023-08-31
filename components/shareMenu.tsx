@@ -31,7 +31,7 @@ const customStyles = {
 };
 
 function ShareButtons({ productName, link }: TShareMenuButtons) {
-  return <div className="flex justify-center gap-3 w-72">
+  return <div className="flex justify-center gap-3">
     <div className="">
       <FacebookShareButton
         url={link}
@@ -67,17 +67,19 @@ function ShareMenu({ productName, link, shareMenuOpen, setShareMenuOpen }: TShar
     style={customStyles}
     contentLabel="Share Menu"
   >
-    <div className="font-larger font-bold">Share your find!</div>
-    <div className="truncate">{productName}</div>
-    <div className="py-4">
-      <ShareButtons
-        productName={productName}
-        link={link}
-      />
-    </div>
-    <div className="grid justify-items-stretch">
-      <div className="font-bold p-1 justify-self-end">
-        <button onClick={() => setShareMenuOpen(false)}>Close</button>
+    <div className="w-56">
+      <div className="font-larger font-bold">Share your find!</div>
+      <div className="">{productName}</div>
+      <div className="py-4">
+        <ShareButtons
+          productName={productName}
+          link={link}
+        />
+      </div>
+      <div className="grid justify-items-stretch">
+        <div className="font-bold p-1 justify-self-end">
+          <button onClick={() => setShareMenuOpen(false)}>Close</button>
+        </div>
       </div>
     </div>
   </Modal>
