@@ -42,11 +42,15 @@ function ProductCard({
     ref={cardRef}
     key={product.id}
   >
-    <img
-      className="w-full h-5/6 object-cover rounded-md"
-      src={product.image}
-      alt={product.title}
-    />
+    <a
+      href={`https://web.furrl.in/productDetail?productId=${product.id}&id=${product.id}&brand=${product.brandName}&name=${product.title}`}
+    >
+      <img
+        className="w-full h-5/6 object-cover rounded-md"
+        src={product.image}
+        alt={product.title}
+      />
+    </a>
     <div className="
           px-1  
         ">
