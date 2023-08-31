@@ -14,7 +14,7 @@ function PriceTag({
   return <div className="flex flex-row gap-1">
     <div>{`Rs. ${price}`}</div>
     {compare_at_price && compare_at_price != price && <div className="line-through">{`Rs. ${compare_at_price}`}</div>}
-    {furrlDiscountPercent > 0 && <div className="text-violet-400">{`${furrlDiscountPercent}%`}</div>}
+    {furrlDiscountPercent > 0 && <div className="text-violet-800">{`${furrlDiscountPercent}%`}</div>}
   </div>
 }
 

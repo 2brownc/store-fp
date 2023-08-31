@@ -37,6 +37,7 @@ function ProductCard({
     px-2 py-4 text-sm
     w-1/2
     nth-[3n+3]:w-full
+    h-96
     `}
     ref={cardRef}
     key={product.id}
@@ -64,15 +65,3 @@ function ProductCard({
 }
 
 export default ProductCard;
-
-/*
-
-  return <div className={`
-        ${clsx((key + 1) % 3 === 0 && 'w-full', (key + 1) % 3 !== 0 && 'w-1/2')}
-        ${clsx(!product.furrlProductCategoryIds.includes(selectedProductsCategory.id) && 'hidden')}
-        h-96
-        px-2 py-4
-        text-sm
-      `}
-
-*/

@@ -13,9 +13,9 @@ function VibeImage({ vibeImageUrl }: TVibeImage) {
           src={vibeImageUrl}
           alt="Vibe Image"
           width="0"
-          height="0"
+          height="200"
           sizes="100vw"
-          style={{ width: '100%', height: '50%' }}
+          style={{ width: '100%', height: '50' }}
         />}
       </div>
     </div>
