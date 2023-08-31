@@ -32,10 +32,11 @@ function ProductCard({
     observer.observe(cardRef.current);
   }, [isLast]);
 
-  return <div
+  return (product.furrlProductCategoryIds.includes(selectedProductsCategory.id) && <div
     className={`
     px-2 py-4 text-sm
-    ${clsx(!product.furrlProductCategoryIds.includes(selectedProductsCategory.id) && 'hidden')}
+    w-1/2
+    nth-[3n+3]:w-full
     `}
     ref={cardRef}
     key={product.id}
@@ -59,6 +60,7 @@ function ProductCard({
       </div>
     </div>
   </div>
+  )
 }
 
 export default ProductCard;
