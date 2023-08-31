@@ -8,18 +8,16 @@ type TVibeImage = {
 function VibeImage({ vibeImageUrl }: TVibeImage) {
   return (
     <div className="w-full">
-      <div className="w-full">
-        {vibeImageUrl && <Image
-          src={vibeImageUrl}
-          alt="Vibe Image"
-          width="0"
-          height="200"
-          sizes="100vw"
-          style={{ width: '100%', height: '50' }}
-        />}
-      </div>
+      {vibeImageUrl && <Image
+        src={vibeImageUrl}
+        alt="Vibe Image"
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{ objectFit: "cover" }}
+        className="w-full h-72"
+      />}
     </div>
-
   )
 }
 
