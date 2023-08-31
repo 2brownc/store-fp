@@ -17,7 +17,7 @@ const nextConfig = {
     ]
   },
   images: {
-    domains: ['cdn.furrl.in']
+    domains: ['cdn.furrl.in', 'cdn.shopify.com']
   },
 }
 
