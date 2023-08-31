@@ -139,6 +139,7 @@ export default function Home() {
       flex flex-col
       min-h-screen
     ">
+
       {/* MENU BAR */}
       <TopMenu />
       {/* HERO */}

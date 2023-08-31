@@ -8,6 +8,7 @@ type TProductGallery = {
   currentTotalProducts: number,
   page: number,
   setPage: (value: number) => void
+  setShowShareMenu: (value: boolean) => void
 }
 
 function ProductGallery({
@@ -15,7 +16,7 @@ function ProductGallery({
   selectedProductsCategory,
   currentTotalProducts,
   page,
-  setPage
+  setPage,
 }: TProductGallery) {
   if (!products) return <></>
 

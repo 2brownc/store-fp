@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { clsx } from 'clsx';
+import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { IProduct, ICategory } from '@/types/types';
 import PriceTag from '@/components/priceTag';
+import ShareMenu from './shareMenu';
 
 type TProductCard = {
   product: IProduct,
@@ -16,6 +17,8 @@ function ProductCard({
   newLimit,
   isLast,
 }: TProductCard) {
+
+  const [shareMenuOpen, setShareMenuOpen] = useState(false);
 
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -32,6 +35,8 @@ function ProductCard({
     observer.observe(cardRef.current);
   }, [isLast]);
 
+  const productLink = `https://web.furrl.in/productDetail?productId=${product.id}&id=${product.id}&brand=${product.brandName}&name=${product.title}`
+
   return (product.furrlProductCategoryIds.includes(selectedProductsCategory.id) && <div
     className={`
     px-2 py-4 text-sm
@@ -43,13 +48,39 @@ function ProductCard({
     key={product.id}
   >
     <a
-      href={`https://web.furrl.in/productDetail?productId=${product.id}&id=${product.id}&brand=${product.brandName}&name=${product.title}`}
+      href={productLink}
     >
-      <img
-        className="w-full h-5/6 object-cover rounded-md"
-        src={product.image}
-        alt={product.title}
-      />
+      <div className="relative h-64">
+
+        <img
+          className="w-full h-64 object-cover rounded-md"
+          src={product.image}
+          alt={product.title}
+        />
+        <div className="
+          absolute bottom-3 right-4
+          bg-slate-200 hover:bg-slate-800
+          rounded-lg"
+        >
+          <ShareMenu
+            productName={product.title}
+            link={productLink}
+            shareMenuOpen={shareMenuOpen}
+            setShareMenuOpen={setShareMenuOpen}
+          />
+          <a
+            href="#"
+            onClick={() => setShareMenuOpen(true)}
+          >
+            <Image
+              alt="share"
+              src="/images/share-icon-svg-27.png"
+              width={24}
+              height={24}
+            />
+          </a>
+        </div>
+      </div>
     </a>
     <div className="
           px-1  
