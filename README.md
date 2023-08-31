@@ -3,6 +3,8 @@
 
 A store app built with Typescript, Nextjs and Tailwindcss. It is deployed on Vercel.
 
+Built for the mobile so make sure to use "responsive view" of your browser when on desktop. 
+
 ### Main Page
 
 The "Night Flea" vibe page of the Furrl store.
@@ -12,6 +14,7 @@ The "Night Flea" vibe page of the Furrl store.
 ### Filters
 
 Customers can select various categories of products they are interested in.
+
 ![Image](res/store_filter.png)
 
 ### Infinite Scroll
