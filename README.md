@@ -1,4 +1,4 @@
-# Store App
+# [Store App](https://store-fp.vercel.app/)
 ## Furrl - Vibe Store
 
 A store app built with Typescript, Nextjs and Tailwindcss. It is deployed on Vercel.
