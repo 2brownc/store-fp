@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from 'react';
 import { ICategory, IProduct } from '@/types/types';
 
@@ -22,6 +21,9 @@ export default function Home() {
   const vibeAPI = "https://api.furrl.in/api/v1/vibe/getVibeRelate";
   const vibeAPIBody = { vibe }
 
+  /*
+    create an "all category" to help with filtering
+  */
   const allProductCategory: ICategory = {
     name: "All",
     id: "0"

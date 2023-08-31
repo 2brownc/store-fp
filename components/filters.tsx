@@ -16,7 +16,7 @@ function Filter({
   if (!productCategories || !selectedProductsCategory) return <></>;
 
   return (
-    <div className="flex gap-3 px-3 overflow-x-auto scrollbar-hide">
+    <div className="flex gap-3 px-3 overflow-x-auto scrollbar-hide my-4">
       {productCategories.map((productCategory: ICategory) => <div
         className={`
                 border-solid border-2 rounded-3xl
