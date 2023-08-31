@@ -11,7 +11,10 @@ function TopMenu() {
         #Vibe Page
       </div>
       <div className="grow-0 w-8">
-        <a href="https://web.furrl.in/wishlist">
+        <a
+          href="https://web.furrl.in/wishlist"
+          target="_self"
+        >
           <Image
             src="/images/wishlist_black.png"
             alt="shoping cart"
@@ -21,7 +24,10 @@ function TopMenu() {
         </a>
       </div>
       <div className="grow-0 w-8">
-        <a href="https://web.furrl.in/cart">
+        <a
+          href="https://web.furrl.in/cart"
+          target="_self"
+        >
           <Image
             src="/images/bag_black.png"
             alt="shoping cart"
