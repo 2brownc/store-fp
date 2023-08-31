@@ -8,7 +8,6 @@ type TProductGallery = {
   currentTotalProducts: number,
   page: number,
   setPage: (value: number) => void
-  setShowShareMenu: (value: boolean) => void
 }
 
 function ProductGallery({
@@ -21,6 +20,7 @@ function ProductGallery({
   if (!products) return <></>
 
   return products.map((product: IProduct, key: number) => <ProductCard
+    key={product.id}
     product={product}
     selectedProductsCategory={selectedProductsCategory}
     isLast={key === currentTotalProducts}

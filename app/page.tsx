@@ -128,11 +128,11 @@ export default function Home() {
 
   useEffect(() => {
     getVisitId();
-  }, []);
+  }, [getVisitId]);
 
   useEffect(() => {
     getVibeData();
-  }, [page, visitId]);
+  }, [page, visitId, getVibeData]);
 
   return (
     <main className="

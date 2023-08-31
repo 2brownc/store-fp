@@ -9,6 +9,7 @@ type TProductCard = {
   selectedProductsCategory: ICategory,
   newLimit: () => void,
   isLast: boolean,
+  key: string,
 }
 
 function ProductCard({
@@ -16,6 +17,7 @@ function ProductCard({
   selectedProductsCategory,
   newLimit,
   isLast,
+  key
 }: TProductCard) {
 
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
@@ -33,7 +35,7 @@ function ProductCard({
     });
 
     observer.observe(cardRef.current);
-  }, [isLast]);
+  }, [isLast, newLimit]);
 
   const productLink = `https://web.furrl.in/productDetail?productId=${product.id}&id=${product.id}&brand=${product.brandName}&name=${product.title}`
 
@@ -45,7 +47,7 @@ function ProductCard({
     h-96
     `}
     ref={cardRef}
-    key={product.id}
+    key={key}
   >
     <a
       href={productLink}
