@@ -1,6 +1,11 @@
 import type { Config } from 'tailwindcss'
 
-let plugin = require("tailwindcss/plugin");
+let arbitaryMatchPlugin = require("tailwindcss/plugin");
+
+type TArbitaryMatchPlugin = {
+  matchVariant: any,
+  theme: any
+}
 
 const config: Config = {
   content: [
@@ -19,10 +24,10 @@ const config: Config = {
   },
   plugins: [
     require('tailwind-scrollbar-hide'),
-    plugin(function({ matchVariant, theme }) {
+    arbitaryMatchPlugin(function({ matchVariant, theme }: TArbitaryMatchPlugin) {
       matchVariant(
         'nth',
-        (value) => {
+        (value: any) => {
           return `&:nth-child(${value})`;
         },
         {
